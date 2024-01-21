@@ -1,0 +1,34 @@
+Company - Farah
+====================================================
+id
+name
+website
+product_base_url
+
+Product
+====================================================
+id
+name
+farah_id
+slug (handle)
+rrp (compare_at_price_max_gbp)
+product_type
+description (body_html)
+entry_date
+farah_published_date (published_at)
+end_date
+
+Price
+====================================================
+id
+product_id
+price
+date
+discount
+farah_discount (percent_sale_min_gbp)
+
+Log
+====================================================
+run_date
+page_count
+product_count

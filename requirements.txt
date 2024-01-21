@@ -1,11 +1,12 @@
 alembic
+beautifulsoup4
 black
 Click
+fake-useragent
 flake8
 Flask
 Flask-Migrate
 Flask-SQLAlchemy
-GeoAlchemy2
 gunicorn
 isort
 itsdangerous
@@ -16,6 +17,7 @@ psycopg2
 python-dateutil
 python-dotenv
 python-editor
+selenium
 six
 SQLAlchemy
 Werkzeug

@@ -16,3 +16,9 @@ flake8:
 
 isort:
 	isort --profile black .
+
+db-migration:
+	flask db migrate
+
+db-upgrade:
+	flask db upgrade
