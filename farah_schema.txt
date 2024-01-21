@@ -17,6 +17,7 @@ description (body_html)
 entry_date
 farah_published_date (published_at)
 end_date
+company
 
 Price
 ====================================================

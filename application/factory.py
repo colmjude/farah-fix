@@ -36,8 +36,8 @@ def register_blueprints(app):
 
 
 def register_commands(app):
-    from application.commands import load
-    app.cli.add_command(load, name='load')
+    from application.commands import data_cli
+    app.cli.add_command(data_cli)
 
 
 def register_filters(app):
