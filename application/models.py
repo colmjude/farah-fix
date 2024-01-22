@@ -3,6 +3,7 @@ import uuid
 from datetime import datetime
 
 from application.extensions import db
+from helpers.model_utils import GetOrCreateMixin, UpdateMixin
 
 
 def _generate_uuid():
@@ -18,11 +19,12 @@ class Company(db.Model):
     product_base_url = db.Column(db.String(255))
 
 
-class Product(db.Model):
+class Product(GetOrCreateMixin, UpdateMixin, db.Model):
     __tablename__ = "product"
 
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String, index=True)
+    farah_product_id = db.Column(db.String)
     slug = db.Column(db.String)
     rrp = db.Column(db.Numeric(10, 2))
     product_type = db.Column(db.String(50))

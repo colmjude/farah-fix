@@ -8,8 +8,8 @@ product_base_url
 Product
 ====================================================
 id
-name
-farah_id
+name (title)
+farah_id (id)
 slug (handle)
 rrp (compare_at_price_max_gbp)
 product_type

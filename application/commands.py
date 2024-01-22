@@ -6,6 +6,7 @@ from flask.cli import AppGroup
 from flask.cli import with_appcontext
 from application.models import Company
 from farah.fetch import fetch_pages, extract_products_from_files
+from farah.loader import reconcile_products
 
 # similar to what we used on development plan prototype
 logging.basicConfig(stream=sys.stdout)
@@ -44,16 +45,9 @@ def fetch_products():
     fetch_pages(1)
 
 
-@product_cli.command("extract")
-def extract_products():
+@product_cli.command("insert")
+def insert_products():
     # TODO: add check that pages have been fetched
     products = extract_products_from_files()
-    # loop over all products
-    for index, (k, product) in enumerate(products.items()):
-        if product["available"] is not False:
-            print(
-                f'{index+1}. {product["title"]} [{product["product_type"]}] ({product["id"]}) - {product["available"]}'
-            )
-            print(
-                f'pmax: {product["price_max_gbp"]}, pmin: {product["price_min_gbp"]}, cmax: {product["compare_at_price_max_gbp"]}, cmin: {product["compare_at_price_min_gbp"]}, %: {product["percent_sale_min_gbp"]}'
-            )
+    
+    reconcile_products(products)
