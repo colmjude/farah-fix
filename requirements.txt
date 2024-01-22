@@ -17,6 +17,7 @@ psycopg2
 python-dateutil
 python-dotenv
 python-editor
+requests
 selenium
 six
 SQLAlchemy

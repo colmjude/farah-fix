@@ -39,6 +39,9 @@ def register_commands(app):
     from application.commands import data_cli
     app.cli.add_command(data_cli)
 
+    from application.commands import product_cli
+    app.cli.add_command(product_cli)
+
 
 def register_filters(app):
     from application.filters import strip

@@ -5,6 +5,7 @@ import logging
 from flask.cli import AppGroup
 from flask.cli import with_appcontext
 from application.models import Company
+from farah.fetch import fetch_page
 
 # similar to what we used on development plan prototype
 logging.basicConfig(stream=sys.stdout)
@@ -13,12 +14,12 @@ logger.setLevel(logging.INFO)
 
 
 data_cli = AppGroup("data")
-
+product_cli = AppGroup("product")
 
 @click.command()
 @with_appcontext
 def load():
-	print("This is a command")
+    print("This is a command")
 
 
 @data_cli.command("init")
@@ -36,3 +37,7 @@ def init_data():
     db.session.add(record)
     db.session.commit()
 
+
+@product_cli.command("fetch")
+def fetch_products():
+    fetch_page(1)
