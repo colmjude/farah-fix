@@ -13,7 +13,7 @@ def read_farah_json(file_name="output.json"):
     return farah_json
 
 
-def fetch_page(page, limit=24, max_page=None):
+def fetch_pages(page, limit=24, max_page=None):
     # make sure the directory exists
     if not os.path.exists(data_dir):
         os.makedirs(data_dir)
@@ -50,4 +50,20 @@ def fetch_page(page, limit=24, max_page=None):
         print(f"Total products = {total_product_count}, pages = {max_page}")
 
     if page < max_page:
-        fetch_page(page + 1, max_page=max_page)
+        fetch_pages(page + 1, max_page=max_page)
+
+
+def extract_products_from_files():
+    # Get a list of all files in the directory
+    files = [f for f in os.listdir(data_dir) if f.endswith(".json")]
+    products = {}
+
+    for f in files:
+        full_filename = os.path.join(data_dir, f)
+        farah_json = read_farah_json(full_filename)
+        print(f'{full_filename} -> {len(farah_json["products"])}')
+        for product in farah_json["products"]:
+            if product["id"] not in products.keys():
+                products[product["id"]] = product
+
+    return products
