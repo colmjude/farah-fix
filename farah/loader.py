@@ -89,8 +89,13 @@ def check_for_changes(original, updated):
 
 def reconcile_products(products):
     # split between available and unavailable
-        # need to check products still exist
+    available = [product for k, product in products.items() if product['available']]
+    unavailable = [product for k, product in products.items() if not product['available']]
+    print(len(available))
+    # need to handle products no longer available
+
     # for product in products:
-    add_product(products[6618973732963])
+    # add_product(products[6618973732963])
 
-
+    for product in available:
+        add_product(product)
