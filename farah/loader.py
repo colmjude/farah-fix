@@ -1,7 +1,7 @@
 from datetime import datetime
 
-from application.models import Product
-from farah.logger import log_product_changes
+from application.models import Company, Product
+from farah.logger import log_product_changes, log_new_product
 
 
 schema_map = {
@@ -16,10 +16,33 @@ schema_map = {
 
 
 def add_product(new_product):
+
+    # handle dates that aren't in python date format
+    new_product[schema_map['farah_published_date']] = datetime.fromisoformat(new_product[schema_map['farah_published_date']])
+
     product, is_new = Product.get_or_create(farah_product_id=new_product['id'])
     if is_new:
-        print("New", product)
-
+        farah = Company.query.get(1)
+        product.company_id = farah.id
+        product.update(
+            name=new_product[schema_map['name']],
+            slug=new_product[schema_map['slug']],
+            product_type=new_product[schema_map['product_type']],
+            farah_product_id=new_product[schema_map['farah_product_id']],
+            rrp=new_product[schema_map['rrp']],
+            description=new_product[schema_map['description']],
+            farah_published_date=new_product[schema_map['farah_published_date']]
+        )
+        log_new_product({
+            "date": datetime.today().strftime("%Y-%m-%d"),
+            "product": product.id,
+            "log": [
+                {
+                    "attr": "farah_product_id",
+                    "from": product.farah_product_id
+                }
+            ]
+        })
     else:
         print(product)
         changes = check_for_changes(product, new_product)
@@ -39,6 +62,7 @@ def check_for_changes(original, updated):
     # cast id to string for comparison
     if isinstance(updated['id'], int):
         updated['id'] = str(updated['id'])
+        updated[schema_map['farah_published_date']] = updated[schema_map['farah_published_date']].date()
 
     # Iterate over the attributes of the original object
     for attr_name, attr_value in vars(original).items():
