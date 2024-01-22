@@ -48,6 +48,8 @@ def add_product(new_product):
         changes = check_for_changes(product, new_product)
         if len(changes['log']):
             # update record
+            updates = {change['attr']: change['to'] for change in changes['log']}
+            product.update(**updates)
             # log changes
             log_product_changes(changes)
 

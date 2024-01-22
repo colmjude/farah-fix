@@ -45,4 +45,3 @@ def log_product_changes(log):
         rows.append([log['date'], log['product'], "change", change['attr'], change['from'], change['to']])
 
     append_rows(rows, log_file)
-    print[rows]
