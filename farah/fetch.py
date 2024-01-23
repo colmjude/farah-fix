@@ -1,8 +1,8 @@
-import os
 import json
 import math
-import requests
+import os
 
+import requests
 
 data_dir = "tmp"
 
@@ -20,7 +20,14 @@ def fetch_pages(page, limit=24, max_page=None):
 
     print(f"Fetching page {page}")
     # url for all clothing
-    url = f"https://services.mybcapps.com/bc-sf-filter/filter?t=1705475243235&_=pf&shop=farahuk.myshopify.com&page={page}&limit={limit}&sort=manual&display=grid&collection_scope=131523674211&tag=&product_available=true&variant_available=true&build_filter_tree=false&check_cache=false&locale=en&sid=b6b8e1dc-57f9-4c68-9143-cd0334445cbe&callback=BoostPFSFilterCallback&event_type=page"
+    url = (
+        f"https://services.mybcapps.com/bc-sf-filter/filter?t=1705475243235&_"
+        f"=pf&shop=farahuk.myshopify.com&page={page}&limit={limit}&sort=manual"
+        f"&display=grid&collection_scope=131523674211&tag=&product_available="
+        f"true&variant_available=true&build_filter_tree=false&check_cache=false"
+        f"&locale=en&sid=b6b8e1dc-57f9-4c68-9143-cd0334445cbe&callback="
+        f"BoostPFSFilterCallback&event_type=page"
+    )
     response = requests.get(url)
 
     if response.status_code == 200:

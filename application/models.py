@@ -1,7 +1,5 @@
 import uuid
 
-from datetime import datetime
-
 from application.extensions import db
 from helpers.model_utils import GetOrCreateMixin, UpdateMixin
 

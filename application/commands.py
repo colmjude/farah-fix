@@ -49,5 +49,5 @@ def fetch_products():
 def insert_products():
     # TODO: add check that pages have been fetched
     products = extract_products_from_files()
-    
+
     reconcile_products(products)
