@@ -36,6 +36,7 @@ class Product(GetOrCreateMixin, UpdateMixin, db.Model):
     company_id = db.Column(
         db.Integer, db.ForeignKey("company.id")
     )
+    company = db.relationship("Company")
 
     def as_dict(self):
         """Convert the model instance to a dictionary."""
