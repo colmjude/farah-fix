@@ -1,7 +1,10 @@
 import uuid
+from decimal import ROUND_HALF_UP, Decimal
+
+from helpers.model_utils import GetOrCreateMixin, UpdateMixin
+from sqlalchemy.orm import mapped_column
 
 from application.extensions import db
-from helpers.model_utils import GetOrCreateMixin, UpdateMixin
 
 
 def _generate_uuid():
@@ -9,7 +12,7 @@ def _generate_uuid():
 
 
 class Company(db.Model):
-    __tablename__ = 'company'
+    __tablename__ = "company"
 
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String)
@@ -31,16 +34,52 @@ class Product(GetOrCreateMixin, UpdateMixin, db.Model):
     farah_published_date = db.Column(db.Date)
     end_date = db.Column(db.Date)
 
-    company_id = db.Column(
-        db.Integer, db.ForeignKey("company.id")
-    )
+    company_id = db.Column(db.Integer, db.ForeignKey("company.id"))
     company = db.relationship("Company")
+
+    prices = db.relationship(
+        "Price",
+        back_populates="product",
+        order_by="Price.collected_at",
+    )
+
+    def price_has_changed(self, current_price):
+        # make sure price value is a Decimal
+        if not isinstance(current_price, Decimal):
+            current_price = Decimal(str(current_price)).quantize(
+                Decimal("0.00"), rounding=ROUND_HALF_UP
+            )
+        if len(self.prices):
+            if self.prices[-1].price == current_price:
+                return False
+        # will return true if no price yet recorded or price has changed
+        print(
+            self.prices[-1].price,
+            type(self.prices[-1].price),
+            current_price,
+            type(current_price),
+            self.prices[-1].price == current_price,
+        )
+        print("price is different")
+        return True
 
     def as_dict(self):
         """Convert the model instance to a dictionary."""
         return {
-            'id': self.id,
-            'name': self.name,
-            'rrp': float(self.rrp),  # Convert Numeric to float
-            'type': self.product_type
+            "id": self.id,
+            "name": self.name,
+            "rrp": float(self.rrp),  # Convert Numeric to float
+            "type": self.product_type,
         }
+
+
+class Price(db.Model):
+    __tablename__ = "price"
+
+    id = db.Column(db.Integer, primary_key=True)
+    price = db.Column(db.Numeric(10, 2))
+    collected_at = db.Column(db.DateTime, default=db.func.now(), index=True)
+    farah_discount = db.Column(db.String)
+
+    product_id = mapped_column(db.ForeignKey("product.id", name="fk_price_product_id"))
+    product = db.relationship("Product")

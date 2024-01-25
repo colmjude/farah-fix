@@ -1,12 +1,13 @@
-import sys
-import click
 import logging
+import sys
 
-from flask.cli import AppGroup
-from flask.cli import with_appcontext
-from application.models import Company
-from farah.fetch import fetch_pages, extract_products_from_files
+import click
+from farah.fetch import extract_products_from_files, fetch_pages
 from farah.loader import reconcile_products
+from farah.price import insert_latest_prices
+from flask.cli import AppGroup, with_appcontext
+
+from application.models import Company
 
 # similar to what we used on development plan prototype
 logging.basicConfig(stream=sys.stdout)
@@ -16,6 +17,7 @@ logger.setLevel(logging.INFO)
 
 data_cli = AppGroup("data")
 product_cli = AppGroup("product")
+price_cli = AppGroup("price")
 
 
 @click.command()
@@ -29,9 +31,9 @@ def init_data():
     from application.extensions import db
 
     farah = {
-        "name": 'Farah',
-        "website": 'https://www.farah.co.uk/',
-        "product_base_url": 'https://www.farah.co.uk/collections/clothing/products/'
+        "name": "Farah",
+        "website": "https://www.farah.co.uk/",
+        "product_base_url": "https://www.farah.co.uk/collections/clothing/products/",
     }
 
     record = Company(**farah)
@@ -51,3 +53,11 @@ def insert_products():
     products = extract_products_from_files()
 
     reconcile_products(products)
+
+
+@price_cli.command("latest")
+def latest_prices():
+    # TODO: add check that pages have been fetched
+    products = extract_products_from_files()
+
+    insert_latest_prices(products)
