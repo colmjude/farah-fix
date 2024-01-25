@@ -1,5 +1,31 @@
 {% extends "base.html" %}
 
 {% block content %}
-Hello World Farah fix
+<h1>Farah fix admin</h1>
+
+<div>
+  <form>
+    <div class="form-group">
+      <label for="id">Product id</label>
+      <input type="text" name="id">
+    </div>
+    <button>Find</button>
+  </form>
+</div>
+
+{% if product %}
+  <hr />
+  <dl>
+    <dt>ID</dt>
+    <dd>{{ product.id }}</dd>
+    <dt>Name</dt>
+    <dd><a href="{{ farah.product_base_url }}{{ product.slug }}">{{ product.name }}</a> ({{url_check}})</dd>
+    <dt>Type</dt>
+    <dd>{{ product.product_type }}</dd>
+    <dt>Farah ID</dt>
+    <dd>{{ product.farah_product_id }}</dd>
+    <dt>RRP</dt>
+    <dd>£{{ product.rrp }}</dd>
+  </dl>
+{% endif %}
 {% endblock %}

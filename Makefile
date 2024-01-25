@@ -24,6 +24,9 @@ db-upgrade:
 	flask db upgrade
 
 
+flask:
+	flask run
+
 fetch-products:
 	flask product fetch
 
