@@ -16,6 +16,18 @@ schema_map = {
 }
 
 
+def get_missing_products(products):
+    product_ids_to_exclude = [product["id"] for product in products]
+
+    # Query to get products that do not match the specified IDs and have an empty end_date
+    products_not_in_list = Product.query.filter(
+        Product.farah_product_id.notin_(product_ids_to_exclude),
+        (Product.end_date == None) | (Product.end_date == datetime.min),
+    ).all()
+
+    return products_not_in_list
+
+
 def add_product(new_product):
     # handle dates that aren't in python date format
     new_product[schema_map["farah_published_date"]] = datetime.fromisoformat(
@@ -101,3 +113,7 @@ def reconcile_products(products):
 
     for product in available:
         add_product(product)
+
+    # check to see if any products no longer in the json
+    removed_products = get_missing_products(available)
+    print(removed_products)
