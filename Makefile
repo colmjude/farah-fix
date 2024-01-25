@@ -22,3 +22,13 @@ db-migration:
 
 db-upgrade:
 	flask db upgrade
+
+
+fetch-products:
+	flask product fetch
+
+clear-tmp:
+	rm -r tmp/*
+
+reconcile:
+	flask product insert
