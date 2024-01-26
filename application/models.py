@@ -43,6 +43,15 @@ class Product(GetOrCreateMixin, UpdateMixin, db.Model):
         order_by="Price.collected_at",
     )
 
+    def current_price(self):
+        return self.prices[-1].price
+
+    def last_price_check(self):
+        return self.prices[-1].collected_at
+
+    def discounted_by(self):
+        return 100 - ((self.current_price() / self.rrp) * 100)
+
     def price_has_changed(self, current_price):
         # make sure price value is a Decimal
         if not isinstance(current_price, Decimal):

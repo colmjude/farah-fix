@@ -11,6 +11,8 @@ frontend = Blueprint("frontend", __name__, template_folder="templates")
 def index():
     farah = Company.query.get(1)
     product = None
+    url_check = None
+
     if request.method == "GET" and request.args.get("id"):
         product = Product.query.get(request.args.get("id"))
         response = requests.get(f"{farah.product_base_url}{product.slug}")

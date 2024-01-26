@@ -26,6 +26,8 @@
     <dd>{{ product.farah_product_id }}</dd>
     <dt>RRP</dt>
     <dd>£{{ product.rrp }}</dd>
+    <dt>Current price</dt>
+    <dd>£{{ product.current_price() }} ({{product.discounted_by()}}%) - price last checked on {{ product.last_price_check() }}</dd>
   </dl>
 {% endif %}
 {% endblock %}
