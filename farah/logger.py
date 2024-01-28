@@ -2,20 +2,14 @@ import csv
 import os
 from datetime import datetime
 
+from farah.utils import create_csv
+
 log_dir = "log"
 header_row = ["date", "product_id", "type", "attr", "from", "to"]
 
 
 def create_log_file(filename):
-    # make sure the directory exists
-    if not os.path.exists(log_dir):
-        os.makedirs(log_dir)
-
-    if not os.path.exists(filename):
-        # Create the file and write the header row
-        with open(filename, mode="w", newline="") as file:
-            writer = csv.writer(file)
-            writer.writerow(header_row)
+    create_csv(filename, log_dir, header_row)
 
 
 def append_rows(rows, filename):
@@ -68,4 +62,15 @@ def log_price_change(product):
     latest_price = product.prices[-1].price
     rows.append([today, product.id, "new-price", "price", previous_price, latest_price])
 
+    append_rows(rows, log_file)
+
+
+# source is where it was run from
+def log_workflow_run(source):
+    today = datetime.today().strftime("%Y-%m-%d")
+    log_file = os.path.join(log_dir, "workflow.csv")
+    create_csv(log_file, log_dir, ["run_date", "source"])
+
+    rows = []
+    rows.append([today, source])
     append_rows(rows, log_file)

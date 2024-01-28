@@ -45,6 +45,9 @@ reconcile:
 latest-prices:
 	flask price latest
 
+log-workflow:
+	flask data workflow
+
 status:
 	git status --ignored
 

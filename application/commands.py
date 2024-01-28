@@ -4,6 +4,7 @@ import sys
 import click
 from farah.fetch import extract_products_from_files, fetch_pages
 from farah.loader import reconcile_products
+from farah.logger import log_workflow_run
 from farah.price import insert_latest_prices
 from flask.cli import AppGroup, with_appcontext
 
@@ -40,6 +41,12 @@ def init_data():
 
     db.session.add(record)
     db.session.commit()
+
+
+@data_cli.command("workflow")
+@click.argument("source")
+def workflow_log(source="github"):
+    log_workflow_run(source)
 
 
 @product_cli.command("fetch")

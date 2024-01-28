@@ -4,6 +4,7 @@
     // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
     "version": "0.2.0",
     "configurations": [
+
         {
             "name": "Python: Flask",
             "type": "python",
@@ -53,6 +54,19 @@
           "request": "launch",
           "module": "flask",
           "args": ["price", "latest"],
+          "env": {
+              "FLASK_APP": "application.wsgi:app",
+              "FLASK_DEBUG": "1"
+          },
+          "console": "integratedTerminal",
+          "stopOnEntry": false
+        },
+        {
+          "name": "Debug logging workflow",
+          "type": "python",
+          "request": "launch",
+          "module": "flask",
+          "args": ["data", "workflow", "local"],
           "env": {
               "FLASK_APP": "application.wsgi:app",
               "FLASK_DEBUG": "1"
