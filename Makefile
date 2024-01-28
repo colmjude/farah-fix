@@ -46,7 +46,7 @@ latest-prices:
 	flask price latest
 
 log-workflow:
-	flask data workflow
+	flask data workflow github
 
 status:
 	git status --ignored
