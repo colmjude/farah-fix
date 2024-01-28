@@ -30,9 +30,6 @@ jobs:
 
     - name: Make tmp folder
       run: make tmp
-
-    - name: Clear tmp folder
-      run: make clear-tmp
     
     - name: Fetch product json
       run: make fetch-products
