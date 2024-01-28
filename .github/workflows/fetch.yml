@@ -1,0 +1,50 @@
+name: Fetch products
+on:
+  schedule:
+  - cron: 0 0 * * *
+  workflow_dispatch:
+
+env:
+  USER_EMAIL: ${{ secrets.USER_EMAIL }}
+  USER_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+  USER_USERNAME: ${{ secrets.USER_NAME }}
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+
+    - uses: actions/checkout@v2
+      with:
+        fetch-depth: 0
+
+    - name: Setup git
+      run: |
+        git config user.email "${USER_EMAIL}"
+        git config user.name "${USER_USERNAME}"
+        git remote set-url origin https://${USER_USERNAME}:${USER_TOKEN}@github.com/${GITHUB_REPOSITORY}.git
+        git checkout main
+    
+    - name: Install build dependencies
+      run: make init
+
+    - name: Make tmp folder
+      run: make tmp
+
+    - name: Clear tmp folder
+      run: make clear-tmp
+    
+    - name: Fetch product json
+      run: make fetch-products
+    
+    - name: Reconcile products
+      run: make reconcile
+    
+    - name: Latest prices
+      run: make latest-prices
+
+    - name: Output git status
+      run: make status
+
+    - name: Commit roadmap pages
+      run: make commit-roadmap

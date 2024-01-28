@@ -1,3 +1,6 @@
+# current git branch
+BRANCH := $(shell git rev-parse --abbrev-ref HEAD)
+
 init::
 	python -m pip install --upgrade pip
 	pip install -r requirements.txt
@@ -30,8 +33,21 @@ flask:
 fetch-products:
 	flask product fetch
 
+tmp:
+	mkdir tmp
+
 clear-tmp:
 	rm -r tmp/*
 
 reconcile:
 	flask product insert
+
+latest-prices:
+	flask price latest
+
+status:
+	git status --ignored
+
+commit-docs::
+	git add .
+	git diff --quiet && git diff --staged --quiet || (git commit -m "Latest product details $(shell date +%F)"; git push origin $(BRANCH))

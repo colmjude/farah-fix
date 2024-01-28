@@ -62,14 +62,6 @@ class Product(GetOrCreateMixin, UpdateMixin, db.Model):
             if self.prices[-1].price == current_price:
                 return False
         # will return true if no price yet recorded or price has changed
-        print(
-            self.prices[-1].price,
-            type(self.prices[-1].price),
-            current_price,
-            type(current_price),
-            self.prices[-1].price == current_price,
-        )
-        print("price is different")
         return True
 
     def as_dict(self):
