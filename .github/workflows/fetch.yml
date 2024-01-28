@@ -40,6 +40,9 @@ jobs:
     - name: Latest prices
       run: make latest-prices
 
+    - name: Log workflow
+      run: make log-workflow
+
     - name: Output git status
       run: make status
 
