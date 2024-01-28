@@ -48,6 +48,6 @@ latest-prices:
 status:
 	git status --ignored
 
-commit-docs::
+commit-products::
 	git add .
 	git diff --quiet && git diff --staged --quiet || (git commit -m "Latest product details $(shell date +%F)"; git push origin $(BRANCH))
