@@ -64,6 +64,16 @@ class Product(GetOrCreateMixin, UpdateMixin, db.Model):
         # will return true if no price yet recorded or price has changed
         return True
 
+    def end(self):
+        self.end_date = db.func.current_date()
+        db.session.add(self)
+        db.session.commit()
+
+    def reactive(self):
+        self.end_date = None
+        db.session.add(self)
+        db.session.commit()
+
     def as_dict(self):
         """Convert the model instance to a dictionary."""
         return {

@@ -32,6 +32,16 @@ def log_new_product(log):
     append_rows(rows, log_file)
 
 
+def log_reactivated_product(product, end_date):
+    today = datetime.today().strftime("%Y-%m-%d")
+    log_file = os.path.join(log_dir, f"{today}.csv")
+    create_log_file(log_file)
+
+    rows = []
+    rows.append([today, product.id, "reactivated", "end_date", end_date, ""])
+    append_rows(rows, log_file)
+
+
 def log_product_changes(log):
     log_file = os.path.join(log_dir, f"{log['date']}.csv")
     create_log_file(log_file)

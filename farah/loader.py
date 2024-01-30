@@ -1,7 +1,7 @@
 from datetime import datetime
 from decimal import Decimal
 
-from farah.logger import log_new_product, log_product_changes
+from farah.logger import log_new_product, log_product_changes, log_reactivated_product
 
 from application.models import Company, Product
 
@@ -56,6 +56,14 @@ def add_product(new_product):
         )
     else:
         print(product)
+        # if product has been ended but is now in the list again we should remove end-date
+        if product.end_date is not None:
+            print("reactive product - remove end date")
+            ended_on = product.end_date
+            product.reactive()
+            log_reactivated_product(product, ended_on)
+
+        # check for changes and update if necessary
         changes = check_for_changes(product, new_product)
         if len(changes["log"]):
             # update record
@@ -102,6 +110,13 @@ def check_for_changes(original, updated):
     return changes
 
 
+def end_products(products):
+    for product in products:
+        product.end()
+    # output what products we should've just added end-dates to
+    print(products)
+
+
 def reconcile_products(products):
     # split between available and unavailable
     available = [product for k, product in products.items() if product["available"]]
@@ -114,6 +129,5 @@ def reconcile_products(products):
     for product in available:
         add_product(product)
 
-    # check to see if any products no longer in the json
-    removed_products = get_missing_products(available)
-    print(removed_products)
+    # check to see if any products no longer in the json and end them
+    end_products(get_missing_products(available))
