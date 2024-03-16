@@ -50,6 +50,8 @@ class Product(GetOrCreateMixin, UpdateMixin, db.Model):
         return self.prices[-1].collected_at
 
     def discounted_by(self):
+        if self.rrp is None:
+            return self.current_price()
         return 100 - ((self.current_price() / self.rrp) * 100)
 
     def price_has_changed(self, current_price):
