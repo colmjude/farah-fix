@@ -1,0 +1,14 @@
+date,product_id,type,attr,from,to
+2024-04-06,465,reactivated,end_date,2024-04-05,
+2024-04-06,587,new,farah_product_id,7277025755235,
+2024-04-06,588,new,farah_product_id,7277025820771,
+2024-04-06,589,new,farah_product_id,7277098729571,
+2024-04-06,590,new,farah_product_id,7277098762339,
+2024-04-06,581,reactivated,end_date,2024-03-31,
+2024-04-06,581,change,farah_published_date,2024-03-21,2024-04-05
+2024-04-06,387,reactivated,end_date,2024-04-05,
+2024-04-06,387,change,farah_published_date,2023-12-11,2024-04-05
+2024-04-06,587,new-price,price,,75.00
+2024-04-06,588,new-price,price,,75.00
+2024-04-06,589,new-price,price,,65.00
+2024-04-06,590,new-price,price,,65.00
