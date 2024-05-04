@@ -1,0 +1,14 @@
+date,product_id,type,attr,from,to
+2024-05-04,591,change,rrp,,60
+2024-05-04,568,change,rrp,35.00,40
+2024-05-04,591,new-price,price,60.00,30.00
+2024-05-04,313,new-price,price,39.00,32.00
+2024-05-04,71,new-price,price,48.00,40.00
+2024-05-04,66,new-price,price,45.00,37.00
+2024-05-04,520,new-price,price,25.00,21.00
+2024-05-04,530,new-price,price,39.00,32.00
+2024-05-04,327,new-price,price,45.00,37.00
+2024-05-04,262,new-price,price,52.00,37.00
+2024-05-04,399,new-price,price,52.00,37.00
+2024-05-04,403,new-price,price,63.00,45.00
+2024-05-04,568,new-price,price,21.00,20.00
