@@ -1,0 +1,5 @@
+date,product_id,type,attr,from,to
+2024-08-18,690,new,farah_product_id,7600745283683,
+2024-08-18,521,reactivated,end_date,2024-08-17,
+2024-08-18,521,change,farah_published_date,2024-08-15,2024-08-17
+2024-08-18,690,new-price,price,,75.00
