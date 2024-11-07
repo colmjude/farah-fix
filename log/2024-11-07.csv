@@ -1,0 +1,15 @@
+date,product_id,type,attr,from,to
+2024-11-07,5,reactivated,end_date,2024-10-25,
+2024-11-07,5,change,farah_published_date,2024-07-02,2024-11-06
+2024-11-07,834,new,farah_product_id,14681025642883,
+2024-11-07,835,new,farah_product_id,14681025675651,
+2024-11-07,836,new,farah_product_id,14681026232707,
+2024-11-07,26,reactivated,end_date,2024-08-29,
+2024-11-07,26,change,description," 100% Wool Slim Fit Crew Neck Deep Ribbed Neckline, Cuffs And Hem Compact Tension Knit Embroidered Farah Logo Model Is 6'2"" And Wears Size Medium Machine Wash "," 100% Wool Slim Fit Crew Neck Premium 100% Lambswool Fabrication 7 Gauge Flatknit Construction Knitted Rib Cuffs, Collar And Hem Embroidered Gold F Branding Model Is 6'2"" And Wears Size Medium Machine Wash Made With Responsibly Sourced Wool "
+2024-11-07,26,change,farah_published_date,2024-07-02,2024-11-06
+2024-11-07,26,change,name,Birchall Slim Fit Crew Neck Jumper In Black,Birchall Crew Neck Lambswool Sweater In Black
+2024-11-07,5,new-price,price,37.00,30.00
+2024-11-07,834,new-price,price,,65.00
+2024-11-07,835,new-price,price,,65.00
+2024-11-07,836,new-price,price,,42.00
+2024-11-07,26,new-price,price,37.00,30.00
