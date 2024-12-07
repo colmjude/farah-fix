@@ -1,0 +1,3 @@
+date,product_id,type,attr,from,to
+2024-12-07,413,change,rrp,25.00,20
+2024-12-07,413,new-price,price,25.00,20.00
