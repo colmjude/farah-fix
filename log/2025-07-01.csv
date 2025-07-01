@@ -1,0 +1,9 @@
+date,product_id,type,attr,from,to
+2025-07-01,845,reactivated,end_date,2025-06-10,
+2025-07-01,845,change,farah_published_date,2025-06-02,2025-06-30
+2025-07-01,844,reactivated,end_date,2025-06-10,
+2025-07-01,844,change,farah_published_date,2025-06-02,2025-06-30
+2025-07-01,843,reactivated,end_date,2025-06-10,
+2025-07-01,843,change,farah_published_date,2025-06-02,2025-06-30
+2025-07-01,842,reactivated,end_date,2025-06-10,
+2025-07-01,842,change,farah_published_date,2025-06-02,2025-06-30
