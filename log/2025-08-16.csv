@@ -1,0 +1,6 @@
+date,product_id,type,attr,from,to
+2025-08-16,767,change,farah_published_date,2024-09-25,2025-08-15
+2025-08-16,1041,change,rrp,85.00,90
+2025-08-16,1053,change,rrp,85.00,90
+2025-08-16,1041,new-price,price,85.00,90.00
+2025-08-16,1053,new-price,price,85.00,90.00
