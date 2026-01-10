@@ -1,0 +1,5 @@
+date,product_id,type,attr,from,to
+2026-01-10,960,reactivated,end_date,2025-12-31,
+2026-01-10,960,change,farah_published_date,2025-12-24,2026-01-09
+2026-01-10,1000,reactivated,end_date,2025-12-21,
+2026-01-10,1000,change,farah_published_date,2025-08-11,2026-01-09
