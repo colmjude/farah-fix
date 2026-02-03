@@ -1,0 +1,6 @@
+date,product_id,type,attr,from,to
+2026-02-03,1250,new,farah_product_id,15607211262339,
+2026-02-03,1251,new,farah_product_id,15607211327875,
+2026-02-03,1124,change,farah_published_date,2025-07-09,2026-02-02
+2026-02-03,1250,new-price,price,,70.00
+2026-02-03,1251,new-price,price,,40.00
