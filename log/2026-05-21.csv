@@ -1,0 +1,6 @@
+date,product_id,type,attr,from,to
+2026-05-21,1043,reactivated,end_date,2026-04-29,
+2026-05-21,1043,change,farah_published_date,2025-08-13,2026-05-20
+2026-05-21,413,reactivated,end_date,2026-05-08,
+2026-05-21,413,change,name,Farah Fragrance 100ml,Farah Fragrance
+2026-05-21,413,change,farah_published_date,2026-02-09,2026-05-20
