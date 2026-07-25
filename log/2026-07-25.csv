@@ -1,0 +1,4 @@
+date,product_id,type,attr,from,to
+2026-07-25,1220,reactivated,end_date,2026-07-08,
+2026-07-25,1220,change,farah_published_date,2026-01-21,2026-07-24
+2026-07-25,1220,new-price,price,35.00,30.00
